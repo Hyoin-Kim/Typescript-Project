@@ -1,10 +1,12 @@
 import React from "react";
-import NameInput from "../components/main/NameInput";
+import InformationInput from "../components/organisms/InformationInput";
+import Poster from "../components/molecules/Poster";
 
 const Main = () => {
   return (
     <div>
-      <NameInput />
+      <Poster />
+      <InformationInput />
     </div>
   );
 };
