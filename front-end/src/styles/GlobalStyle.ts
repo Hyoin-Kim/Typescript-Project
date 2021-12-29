@@ -10,12 +10,15 @@ const GlobalStyle = createGlobalStyle`
 
   p{
     color: #4D5358;
+    font-size: 14px;
+    line-height: 19.6px;
+    font-weight: 400;
   }
 
   input{
     border: none;
     padding: 5px;
-    border-bottom : 1px solid #F2F2F2;
+    border-bottom : 1px solid #E6E6E6;
   }
 
   input:focus{
