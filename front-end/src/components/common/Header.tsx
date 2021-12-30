@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import BatteryIcon from "../../assets/batteryIcon.svg";
+import { BatteryIcon } from "../../assets";
 
 const Header = () => {
   const now = new Date();

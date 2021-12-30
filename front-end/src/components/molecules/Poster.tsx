@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import SecurityImg from "../../assets/security.svg";
+import { SecurityImg } from "../../assets";
 
 const Poster = () => {
   return (
@@ -44,6 +44,7 @@ const InquireButton = styled.div`
     font-size: 12px;
     float: right;
     margin: 14px 16px 14px 0px;
+    cursor: pointer;
   }
 `;
 

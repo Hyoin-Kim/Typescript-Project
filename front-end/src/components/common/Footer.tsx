@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Modal from "../molecules/Modal";
-import HomeBarIcon from "../../assets/homeBar.svg";
+import { HomeBarIcon } from "../../assets";
 
 const Footer = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
