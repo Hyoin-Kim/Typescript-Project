@@ -20,10 +20,12 @@ const StyledInput = ({ width, name, isPw, errorMsg, isConditionMet, onChange }: 
   function handleOnFocus() {
     setIsFocusOn(true);
   }
+
   return (
     <StyledInputWrpper>
-      <InputContainer width={width} condition={!isFocusOn ? 0 : (isFocusOn && isConditionMet) || value == "" ? 1 : 0}>
+      <InputContainer width={width} condition={!isFocusOn ? 0 : (isFocusOn && isConditionMet) || value == "" ? 1 : -1}>
         <Input
+          width={width}
           onChange={handleOnChange}
           onFocus={handleOnFocus}
           type={isPw ? "password" : "text"}
@@ -52,26 +54,28 @@ const InputContainer = styled.div<{ width: string; condition: number }>`
     props.condition == 0
       ? css`
           border: none;
-          padding: 5px;
           border-bottom: 1px solid #e6e6e6;
         `
       : props.condition == -1
       ? css`
-          border: solid 1px red;
+          border: none;
+          border-bottom: 2px solid red;
         `
       : css`
-          border-bottom: 1px solid #848484;
+          border: none;
+          border-bottom: 2px solid #848484;
         `};
   display: flex;
   align-items: center;
   width: ${(props) => props.width};
 `;
 
-const Input = styled.input`
+const Input = styled.input<{ width: string }>`
+  padding: 5px;
   border: none;
+  width: ${(props) => props.width};
   :focus {
     outline: none;
-    border-bottom: 1px solid #848484;
   }
 `;
 
