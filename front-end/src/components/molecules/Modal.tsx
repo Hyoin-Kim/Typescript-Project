@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import allCheck from "../../assets/allCheck_color.svg";
-import allCheckGray from "../../assets/allCheck.svg";
-import check from "../../assets/check_color.svg";
-import checkGray from "../../assets/check.svg";
+import { AllCheckIcon, AllCheckGrayIcon, CheckIcon, CheckGrayIcon } from "../../assets";
 
 export interface IProps {
   isOpen: boolean;
@@ -87,40 +84,40 @@ const Modal = ({ ...props }: IProps): React.ReactElement => {
           <Background onClick={closeHandler} isBlur={isBlur}></Background>
           <ModalWrapper>
             <AcceptAllCheck>
-              <img src={checkAll ? allCheck : allCheckGray} alt="" onClick={handleCheckAll} />
+              <img src={checkAll ? AllCheckIcon : AllCheckGrayIcon} alt="" onClick={handleCheckAll} />
               <div>약관에 모두 동의</div>
             </AcceptAllCheck>
             <AcceptWrapper>
               <AcceptCheck>
                 <input type="checkbox" checked={isChecked.check1} onChange={handleCheck} name="policy1" />
                 <ImgWrapper>
-                  <img src={isChecked.check1 ? check : checkGray} alt="" />
+                  <img src={isChecked.check1 ? CheckIcon : CheckGrayIcon} alt="" />
                 </ImgWrapper>
                 <div>[필수] 개인정보 이용 동의</div>
               </AcceptCheck>
               <AcceptCheck>
                 <input type="checkbox" checked={isChecked.check2} onChange={handleCheck} name="policy2" />
                 <ImgWrapper>
-                  <img src={isChecked.check2 ? check : checkGray} alt="" />
+                  <img src={isChecked.check2 ? CheckIcon : CheckGrayIcon} alt="" />
                 </ImgWrapper>
                 <div>[필수] 서비스 이용 약관 동의</div>
               </AcceptCheck>
               <AcceptCheck>
                 <input type="checkbox" checked={isChecked.check3} onChange={handleCheck} name="policy3" />
                 <ImgWrapper>
-                  <img src={isChecked.check3 ? check : checkGray} alt="" />
+                  <img src={isChecked.check3 ? CheckIcon : CheckGrayIcon} alt="" />
                 </ImgWrapper>
                 <div>[필수] 고유식별정보 처리 동의</div>
               </AcceptCheck>
               <AcceptCheck>
                 <input type="checkbox" checked={isChecked.check4} onChange={handleCheck} name="policy4" />
                 <ImgWrapper>
-                  <img src={isChecked.check4 ? check : checkGray} alt="" />
+                  <img src={isChecked.check4 ? CheckIcon : CheckGrayIcon} alt="" />
                 </ImgWrapper>
                 <div>[필수] 제3자 정보제공 동의</div>
               </AcceptCheck>
             </AcceptWrapper>
-            <Button>동의하고 간편인증 하기</Button>
+            {checkAll ? <JoinButton>동의하고 간편인증 하기</JoinButton> : <Button>동의하고 간편인증 하기</Button>}
           </ModalWrapper>
         </>
       )}
@@ -201,6 +198,17 @@ const AcceptCheck = styled.div`
 //   margin-right: 16px;
 //   cursor: pointer;
 // `;
+
+const JoinButton = styled.button`
+  width: 335px;
+  height: 52px;
+  background-color: #4394f0;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+`;
 
 const Button = styled.button`
   width: 335px;
