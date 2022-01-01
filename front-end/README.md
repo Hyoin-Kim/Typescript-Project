@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+# 회원정보 JoinPage
+타입스크립트를 활용하여 회원 정보를 받아 일부 기능을 구현해보는 프로젝트입니다. <br/> 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+📃프로젝트 개발 기간 : 2021.12.29 ~ 2021.1.4
 
-## Available Scripts
 
-In the project directory, you can run:
+## 📌 Convention
+- Code Convention
+  - eslint, prettier 사용
+  - 변수, 함수 : camel Case 사용
+  - styled-components : 코드 하단에 작성하기
+  - 아토믹 디자인 패턴 적용(Atoms->Molecules->Organisms->Template->Page)
 
-### `npm start`
+- Commit Message Convention
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  ```
+  #   init     : 초기화
+  #   feat     : 기능 추가
+  #   update   : 기능 보완 (업그레이드)
+  #   fix      : 버그 수정
+  #   refactor : 리팩토링
+  #   style    : 스타일 (코드 형식, 세미콜론 추가: 비즈니스 로직에 변경 없음, 스타일)
+  #   docs     : 문서 (Readme 추가, 수정, 삭제)
+  #   test     : 테스트 (테스트 코드 추가, 수정, 삭제: 비즈니스 로직에 변경 없음)
+  #   chore    : 기타 변경사항 (빌드 스크립트 수정, 에셋 추가 등)
+  ```
+  
+## 🛠 기술 스택
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/TypeScript-blue?style=flat-square&logo=TypeScript&logoColor=white"/> <img src="https://img.shields.io/badge/StyledComponents-DB7093?style=flat-square&logo=Styled-components&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white"/> <img src="https://img.shields.io/badge/Eslint-4B3263?style=flat-square&logo=Eslint&logoColor=white"/>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+"@testing-library/jest-dom": "^5.16.1",
+"@testing-library/react": "^12.1.2",
+"@testing-library/user-event": "^13.5.0",
+"@types/jest": "^27.0.3",
+"@types/node": "^16.11.17",
+"@types/react": "^17.0.38",
+"@types/react-dom": "^17.0.11",
+"lint-staged": "^11.2.6",
+"react": "^17.0.2",
+"react-dom": "^17.0.2",
+"react-scripts": "5.0.0",
+"styled-components": "^5.3.3",
+"styled-reset": "^4.3.4",
+"web-vitals": "^2.1.2"
+```
 
-### `npm test`
+## 💻 실행
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+$ npm install
+$ npm start
+```
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## ❤ 개발자 소개
+|김효인|
+|---|
+|[@Hyoin-Kim](https://github.com/Hyoin-Kim)|
