@@ -5,12 +5,11 @@ import PhoneInput from "../molecules/PhoneInput";
 import IdentifyInput from "../molecules/IdentifyInput";
 import Footer from "../common/Footer";
 
-interface IProps {
-  handleOnKeyPress?: (value: string) => void;
-}
-
-const InformationInput = ({ handleOnKeyPress }: IProps) => {
+const InformationInput = () => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const phoneInputRef = useRef<HTMLInputElement>(null);
+  const birthInputRef = useRef<HTMLInputElement>(null);
+  const uniqueInputRef = useRef<HTMLInputElement>(null);
   const [isJoinButtonDisabled, setIsJoinButtonDisabled] = useState(false);
   const [isConditionMet, setIsConditionMet] = useState({
     name: false,
@@ -19,9 +18,26 @@ const InformationInput = ({ handleOnKeyPress }: IProps) => {
   });
 
   useEffect(() => {
-    console.log("current: ", inputRef);
     if (inputRef.current !== null) inputRef.current.focus();
   }, []);
+
+  function handleNamePress(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key == "Enter") {
+      phoneInputRef.current?.focus();
+    }
+  }
+
+  function handlePhonePress(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key == "Enter") {
+      birthInputRef.current?.focus();
+    }
+  }
+
+  function handleUniquePress(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key == "Enter") {
+      uniqueInputRef.current?.focus();
+    }
+  }
 
   useEffect(() => {
     if (isConditionMet.name && isConditionMet.phoneNum && isConditionMet.uniqueNum) {
@@ -35,12 +51,23 @@ const InformationInput = ({ handleOnKeyPress }: IProps) => {
     <div>
       <NameInput
         inputRef={inputRef}
-        onKeyPress={handleOnKeyPress}
+        onKeyPress={handleNamePress}
         isConditionMet={isConditionMet}
         setIsConditionMet={setIsConditionMet}
       />
-      <PhoneInput isConditionMet={isConditionMet} setIsConditionMet={setIsConditionMet} />
-      <IdentifyInput isConditionMet={isConditionMet} setIsConditionMet={setIsConditionMet} />
+      <PhoneInput
+        phoneInputRef={phoneInputRef}
+        onKeyPress={handlePhonePress}
+        isConditionMet={isConditionMet}
+        setIsConditionMet={setIsConditionMet}
+      />
+      <IdentifyInput
+        birthInputRef={birthInputRef}
+        uniqueInputRef={uniqueInputRef}
+        onKeyPress={handleUniquePress}
+        isConditionMet={isConditionMet}
+        setIsConditionMet={setIsConditionMet}
+      />
       <Footer isJoinButtonDisabled={isJoinButtonDisabled} />
     </div>
   );
