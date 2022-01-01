@@ -3,7 +3,11 @@ import styled from "styled-components";
 import Modal from "../molecules/Modal";
 import { HomeBarIcon } from "../../assets";
 
-const Footer = () => {
+interface IProps {
+  isJoinButtonDisabled: boolean;
+}
+
+const Footer = ({ isJoinButtonDisabled }: IProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   function openModalFunc() {
@@ -11,9 +15,9 @@ const Footer = () => {
   }
   return (
     <FooterWrapper>
-      <Button onClick={openModalFunc}>다음</Button>
+      {isJoinButtonDisabled ? <CButton onClick={openModalFunc}>다음</CButton> : <Button>다음</Button>}
       <img src={HomeBarIcon} alt=""></img>
-      {isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen} isBlur={true} />}
+      {isOpen && isJoinButtonDisabled && <Modal isOpen={isOpen} setIsOpen={setIsOpen} isBlur={true} />}
     </FooterWrapper>
   );
 };
@@ -28,6 +32,16 @@ const Button = styled.button`
   width: 327px;
   height: 52px;
   background-color: #dde1e6;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  font-size: 16px;
+`;
+
+const CButton = styled.button`
+  width: 327px;
+  height: 52px;
+  background-color: #4394f0;
   border-radius: 8px;
   color: white;
   border: none;
