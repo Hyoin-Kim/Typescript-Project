@@ -3,6 +3,8 @@ import styled from "styled-components";
 import StyledInput from "../atoms/StyledInput";
 
 interface IProps {
+  phoneInputRef?: React.RefObject<HTMLInputElement>;
+  onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   isConditionMet: {
     name: boolean;
     phoneNum: boolean;
@@ -11,22 +13,27 @@ interface IProps {
   setIsConditionMet: (value: { name: boolean; phoneNum: boolean; uniqueNum: boolean }) => void;
 }
 
-const PhoneInput = ({ isConditionMet, setIsConditionMet }: IProps) => {
+const PhoneInput = ({ phoneInputRef, onKeyPress, isConditionMet, setIsConditionMet }: IProps) => {
   const [phoneNum, setPhoneNum] = useState("");
 
-  const handleNameOnChange = (value: any) => {
+  const handleNameOnChange = (value: string) => {
     setPhoneNum(value);
-    console.log("숫자", value);
   };
 
   useEffect(() => {
-    console.log(phoneNum.length);
-    if (phoneNum.length === 10) {
-      setPhoneNum(phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
-      setIsConditionMet({ ...isConditionMet, phoneNum: true });
-    } else if (phoneNum.length === 13) {
-      setPhoneNum(phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"));
-      setIsConditionMet({ ...isConditionMet, phoneNum: true });
+    if (phoneNum.length >= 3) {
+      if (phoneNum.length === 10) {
+        setPhoneNum(phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
+      } else if (phoneNum.length === 13) {
+        setPhoneNum(phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"));
+      }
+      const oldPhoneNum = /^01([1|9|])-?([0-9]{3,4})-?([0-9]{4})$/;
+      const recentPhoneNum = /^01([0])-?([0-9]{4})-?([0-9]{4})$/;
+      if (oldPhoneNum.test(phoneNum) === true || recentPhoneNum.test(phoneNum)) {
+        setIsConditionMet({ ...isConditionMet, phoneNum: true });
+      } else {
+        setIsConditionMet({ ...isConditionMet, phoneNum: false });
+      }
     } else {
       setIsConditionMet({ ...isConditionMet, phoneNum: false });
     }
@@ -42,6 +49,8 @@ const PhoneInput = ({ isConditionMet, setIsConditionMet }: IProps) => {
         isConditionMet={isConditionMet.phoneNum}
         maxByte={13}
         value={phoneNum}
+        onKeyPress={onKeyPress}
+        inputRef={phoneInputRef}
       />
     </PhoneWrapper>
   );
