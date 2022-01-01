@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 interface IProps {
   width: string;
   isPw?: boolean;
   errorMsg?: string;
+  spaceMsg?: string;
   tip?: string;
   message?: string;
   maxByte?: number;
@@ -11,19 +13,21 @@ interface IProps {
   isConditionMet: boolean;
   inputRef?: React.RefObject<HTMLInputElement>;
   onChange?: (value: string) => void;
-  onKeyPress?: (value: string) => void;
+  onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const StyledInput = ({
   width,
   isPw,
   errorMsg,
+  spaceMsg,
   tip,
   message,
   maxByte,
   value,
   isConditionMet,
   onChange,
+  onKeyPress,
   inputRef,
 }: IProps): React.ReactElement => {
   const [isFocusOn, setIsFocusOn] = useState(false);
@@ -37,12 +41,6 @@ const StyledInput = ({
     setIsFocusOn(true);
   }
 
-  function handleonKeyPress(e: any) {
-    if (e.key == "Enter") {
-      console.log("엔터");
-    }
-  }
-
   return (
     <StyledInputWrpper>
       <InputContainer
@@ -52,7 +50,7 @@ const StyledInput = ({
           width={width}
           onChange={handleOnChange}
           onFocus={handleOnFocus}
-          onKeyPress={handleonKeyPress}
+          onKeyPress={onKeyPress}
           type={isPw ? "password" : "text"}
           autoComplete={isPw ? "false" : "true"}
           maxLength={maxByte}
@@ -66,7 +64,7 @@ const StyledInput = ({
           <Tip>{tip}</Tip> <p>{message}</p>
         </TipWrapper>
       ) : null}
-      {/* {value == "" ? <p>공백안돼!</p> : null} */}
+      {/* {isInput == "" ? <ErrorMsg>{spaceMsg}</ErrorMsg> : null} */}
     </StyledInputWrpper>
   );
 };
