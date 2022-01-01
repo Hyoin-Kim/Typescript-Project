@@ -2,14 +2,19 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import StyledInput from "../atoms/StyledInput";
 
-const IdentifyInput = () => {
-  const [isConditionMet, setIsConditionMet] = useState({
-    uniqueNum: false,
-  });
+interface IProps {
+  isConditionMet: {
+    name: boolean;
+    phoneNum: boolean;
+    uniqueNum: boolean;
+  };
+  setIsConditionMet: (value: { name: boolean; phoneNum: boolean; uniqueNum: boolean }) => void;
+}
+
+const IdentifyInput = ({ isConditionMet, setIsConditionMet }: IProps) => {
   const [uniqueNum, setUniqueNum] = useState("");
   const handleNameOnChange = (value: string) => {
     setUniqueNum(value);
-    console.log(value);
   };
 
   useEffect(() => {
@@ -29,6 +34,7 @@ const IdentifyInput = () => {
         errorMsg="올바른 주민등록번호를 입력하세요."
         onChange={handleNameOnChange}
         isConditionMet={isConditionMet.uniqueNum}
+        maxByte={6}
       />{" "}
       -{" "}
       <StyledInput
@@ -36,6 +42,7 @@ const IdentifyInput = () => {
         errorMsg="올바른 주민등록번호를 입력하세요."
         onChange={handleNameOnChange}
         isConditionMet={isConditionMet.uniqueNum}
+        maxByte={7}
       />
     </IdentifyWrapper>
   );
@@ -47,6 +54,7 @@ const IdentifyWrapper = styled.div`
   margin: 0px 24px 32px 24px;
   & > div {
     display: inline-block;
-    margin: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
   }
 `;
