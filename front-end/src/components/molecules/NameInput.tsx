@@ -4,7 +4,7 @@ import StyledInput from "../atoms/StyledInput";
 
 interface IProps {
   inputRef?: React.RefObject<HTMLInputElement>;
-  onKeyPress?: (value: string) => void;
+  onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   isConditionMet: {
     name: boolean;
     phoneNum: boolean;
@@ -17,12 +17,11 @@ const NameInput = ({ inputRef, onKeyPress, isConditionMet, setIsConditionMet }: 
   const [name, setName] = useState("");
   const handleNameOnChange = (value: string) => {
     setName(value);
-    console.log(value);
   };
 
   useEffect(() => {
     const nameCheck = /^[가-힣|a-z|A-Z|0-9|\s]+$/;
-    const nameSpace = /^[^\s|\s$]/;
+    const nameSpace = /^[^\s|\s$]+$/;
     if (nameCheck.test(name) && nameSpace.test(name)) {
       setIsConditionMet({ ...isConditionMet, name: true });
     } else {
@@ -36,6 +35,7 @@ const NameInput = ({ inputRef, onKeyPress, isConditionMet, setIsConditionMet }: 
       <StyledInput
         width="300px"
         errorMsg="한글과 영문만 가능합니다."
+        spaceMsg="올바른 이름을 입력해주세요."
         message="닉네임이 아닌 실명인지 확인해주세요."
         tip="TIP"
         onChange={handleNameOnChange}
