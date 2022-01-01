@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import StyledInput from "../atoms/StyledInput";
 
 interface IProps {
+  birthInputRef?: React.RefObject<HTMLInputElement>;
+  uniqueInputRef?: React.RefObject<HTMLInputElement>;
+  onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   isConditionMet: {
     name: boolean;
     phoneNum: boolean;
@@ -11,11 +14,16 @@ interface IProps {
   setIsConditionMet: (value: { name: boolean; phoneNum: boolean; uniqueNum: boolean }) => void;
 }
 
-const IdentifyInput = ({ isConditionMet, setIsConditionMet }: IProps) => {
+const IdentifyInput = ({ birthInputRef, uniqueInputRef, onKeyPress, isConditionMet, setIsConditionMet }: IProps) => {
+  const maxByteRef = useRef<HTMLInputElement>(null);
   const [uniqueNum, setUniqueNum] = useState("");
   const handleNameOnChange = (value: string) => {
     setUniqueNum(value);
   };
+
+  if (uniqueNum.length === 6) {
+    maxByteRef.current?.focus();
+  }
 
   useEffect(() => {
     const nameCheck = /^[0-9]+$/;
@@ -35,6 +43,8 @@ const IdentifyInput = ({ isConditionMet, setIsConditionMet }: IProps) => {
         onChange={handleNameOnChange}
         isConditionMet={isConditionMet.uniqueNum}
         maxByte={6}
+        onKeyPress={onKeyPress}
+        inputRef={birthInputRef}
       />{" "}
       -{" "}
       <StyledInput
@@ -43,6 +53,7 @@ const IdentifyInput = ({ isConditionMet, setIsConditionMet }: IProps) => {
         onChange={handleNameOnChange}
         isConditionMet={isConditionMet.uniqueNum}
         maxByte={7}
+        inputRef={uniqueInputRef || maxByteRef}
       />
     </IdentifyWrapper>
   );
