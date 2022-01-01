@@ -2,38 +2,71 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 interface IProps {
   width: string;
-  name?: string;
   isPw?: boolean;
   errorMsg?: string;
+  tip?: string;
+  message?: string;
+  maxByte?: number;
+  value?: string;
   isConditionMet: boolean;
+  inputRef?: React.RefObject<HTMLInputElement>;
   onChange?: (value: string) => void;
+  onKeyPress?: (value: string) => void;
 }
 
-const StyledInput = ({ width, name, isPw, errorMsg, isConditionMet, onChange }: IProps) => {
+const StyledInput = ({
+  width,
+  isPw,
+  errorMsg,
+  tip,
+  message,
+  maxByte,
+  value,
+  isConditionMet,
+  onChange,
+  inputRef,
+}: IProps): React.ReactElement => {
   const [isFocusOn, setIsFocusOn] = useState(false);
-  const [value, setValue] = useState("");
+  const [isInput, setIsInput] = useState("");
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     onChange?.(e.target.value);
-    setValue(e.target.value);
+    setIsInput(e.target.value);
   }
   function handleOnFocus() {
     setIsFocusOn(true);
   }
 
+  function handleonKeyPress(e: any) {
+    if (e.key == "Enter") {
+      console.log("엔터");
+    }
+  }
+
   return (
     <StyledInputWrpper>
-      <InputContainer width={width} condition={!isFocusOn ? 0 : (isFocusOn && isConditionMet) || value == "" ? 1 : -1}>
+      <InputContainer
+        width={width}
+        condition={!isFocusOn ? 0 : (isFocusOn && isConditionMet) || isInput == "" ? 1 : -1}>
         <Input
           width={width}
           onChange={handleOnChange}
           onFocus={handleOnFocus}
+          onKeyPress={handleonKeyPress}
           type={isPw ? "password" : "text"}
           autoComplete={isPw ? "false" : "true"}
-          name={name}
+          maxLength={maxByte}
+          ref={inputRef}
+          value={value}
         />
       </InputContainer>
-      {isFocusOn && !isConditionMet && value !== "" && <ErrorMsg>{errorMsg}</ErrorMsg>}
+      {isFocusOn && !isConditionMet && isInput !== "" && <ErrorMsg>{errorMsg}</ErrorMsg>}
+      {(isFocusOn && isConditionMet) || isInput == "" ? (
+        <TipWrapper>
+          <Tip>{tip}</Tip> <p>{message}</p>
+        </TipWrapper>
+      ) : null}
+      {/* {value == "" ? <p>공백안돼!</p> : null} */}
     </StyledInputWrpper>
   );
 };
@@ -67,6 +100,7 @@ const InputContainer = styled.div<{ width: string; condition: number }>`
         `};
   display: flex;
   align-items: center;
+
   width: ${(props) => props.width};
 `;
 
@@ -80,7 +114,20 @@ const Input = styled.input<{ width: string }>`
 `;
 
 const ErrorMsg = styled.div`
-  text-align: left;
-  text-align: left;
-  color: red;
+  color: #e85440;
+  font-size: 14px;
+  line-height: 140%;
+`;
+
+const Tip = styled.div`
+  display: flex;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 140%;
+  color: #4394f0;
+  margin-right: 5px;
+`;
+
+const TipWrapper = styled.div`
+  display: flex;
 `;
