@@ -25,7 +25,15 @@ const Footer = ({ isJoinButtonDisabled }: IProps) => {
 export default Footer;
 
 const FooterWrapper = styled.div`
+  position: sticky;
+  bottom: 0;
+  background-color: white;
   text-align: -webkit-center;
+  & > img {
+    position: sticky;
+    margin: 20px 0 5px 0;
+    z-index: 1000;
+  }
 `;
 
 const Button = styled.button`
