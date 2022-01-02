@@ -89,32 +89,64 @@ const Modal = ({ ...props }: IProps): React.ReactElement => {
             </AcceptAllCheck>
             <AcceptWrapper>
               <AcceptCheck>
-                <input type="checkbox" checked={isChecked.check1} onChange={handleCheck} name="policy1" />
-                <ImgWrapper>
-                  <img src={isChecked.check1 ? CheckIcon : CheckGrayIcon} alt="" />
-                </ImgWrapper>
-                <div>[필수] 개인정보 이용 동의</div>
+                <CheckBox
+                  type="checkbox"
+                  checked={isChecked.check1}
+                  onChange={handleCheck}
+                  name="policy1"
+                  id="policy1"
+                />
+                <Label htmlFor="policy1">
+                  <ImgWrapper>
+                    <img src={isChecked.check1 ? CheckIcon : CheckGrayIcon} alt="" />
+                  </ImgWrapper>
+                  <div>[필수] 개인정보 이용 동의</div>
+                </Label>
               </AcceptCheck>
               <AcceptCheck>
-                <input type="checkbox" checked={isChecked.check2} onChange={handleCheck} name="policy2" />
-                <ImgWrapper>
-                  <img src={isChecked.check2 ? CheckIcon : CheckGrayIcon} alt="" />
-                </ImgWrapper>
-                <div>[필수] 서비스 이용 약관 동의</div>
+                <CheckBox
+                  type="checkbox"
+                  checked={isChecked.check2}
+                  onChange={handleCheck}
+                  name="policy2"
+                  id="policy2"
+                />
+                <Label htmlFor="policy2">
+                  <ImgWrapper>
+                    <img src={isChecked.check2 ? CheckIcon : CheckGrayIcon} alt="" />
+                  </ImgWrapper>
+                  <div>[필수] 서비스 이용 약관 동의</div>
+                </Label>
               </AcceptCheck>
               <AcceptCheck>
-                <input type="checkbox" checked={isChecked.check3} onChange={handleCheck} name="policy3" />
-                <ImgWrapper>
-                  <img src={isChecked.check3 ? CheckIcon : CheckGrayIcon} alt="" />
-                </ImgWrapper>
-                <div>[필수] 고유식별정보 처리 동의</div>
+                <CheckBox
+                  type="checkbox"
+                  checked={isChecked.check3}
+                  onChange={handleCheck}
+                  name="policy3"
+                  id="policy3"
+                />
+                <Label htmlFor="policy3">
+                  <ImgWrapper>
+                    <img src={isChecked.check3 ? CheckIcon : CheckGrayIcon} alt="" />
+                  </ImgWrapper>
+                  <div>[필수] 고유식별정보 처리 동의</div>
+                </Label>
               </AcceptCheck>
               <AcceptCheck>
-                <input type="checkbox" checked={isChecked.check4} onChange={handleCheck} name="policy4" />
-                <ImgWrapper>
-                  <img src={isChecked.check4 ? CheckIcon : CheckGrayIcon} alt="" />
-                </ImgWrapper>
-                <div>[필수] 제3자 정보제공 동의</div>
+                <CheckBox
+                  type="checkbox"
+                  checked={isChecked.check4}
+                  onChange={handleCheck}
+                  name="policy4"
+                  id="policy4"
+                />
+                <Label htmlFor="policy4">
+                  <ImgWrapper>
+                    <img src={isChecked.check4 ? CheckIcon : CheckGrayIcon} alt="" />
+                  </ImgWrapper>
+                  <div>[필수] 제3자 정보제공 동의</div>
+                </Label>
               </AcceptCheck>
             </AcceptWrapper>
             {checkAll ? <JoinButton>동의하고 간편인증 하기</JoinButton> : <Button>동의하고 간편인증 하기</Button>}
@@ -193,11 +225,11 @@ const AcceptCheck = styled.div`
   }
 `;
 
-// const CheckBox = styled.input`
-//   display: none;
-//   margin-right: 16px;
-//   cursor: pointer;
-// `;
+const CheckBox = styled.input`
+  display: none;
+  margin-right: 16px;
+  cursor: pointer;
+`;
 
 const JoinButton = styled.button`
   width: 335px;
@@ -222,5 +254,11 @@ const Button = styled.button`
 `;
 
 const ImgWrapper = styled.div`
+  display: inline-block;
   margin-right: 14px;
+  cursor: pointer;
+`;
+
+const Label = styled.label`
+  display: flex;
 `;
