@@ -14,6 +14,7 @@ const InformationInput = () => {
   const [isConditionMet, setIsConditionMet] = useState({
     name: false,
     phoneNum: false,
+    birthNum: false,
     uniqueNum: false,
   });
 
@@ -40,7 +41,7 @@ const InformationInput = () => {
   }
 
   useEffect(() => {
-    if (isConditionMet.name && isConditionMet.phoneNum && isConditionMet.uniqueNum) {
+    if (isConditionMet.name && isConditionMet.phoneNum && isConditionMet.uniqueNum && isConditionMet.birthNum) {
       setIsJoinButtonDisabled(true);
     } else {
       setIsJoinButtonDisabled(false);
