@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import StyledInput from "../atoms/StyledInput";
+import { IJoinInfo } from "../../types/info.type";
 
 interface IProps {
   inputRef?: React.RefObject<HTMLInputElement>;
   onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  isConditionMet: {
-    name: boolean;
-    phoneNum: boolean;
-    uniqueNum: boolean;
-  };
-  setIsConditionMet: (value: { name: boolean; phoneNum: boolean; uniqueNum: boolean }) => void;
+  isConditionMet: IJoinInfo;
+  setIsConditionMet: (value: IJoinInfo) => void;
 }
 
 const NameInput = ({ inputRef, onKeyPress, isConditionMet, setIsConditionMet }: IProps) => {
