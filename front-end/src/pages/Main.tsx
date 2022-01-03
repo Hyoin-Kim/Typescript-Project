@@ -1,14 +1,18 @@
 import React from "react";
-import InformationInput from "../components/organisms/InformationInput";
-import Poster from "../components/molecules/Poster";
+import UserInfoTemplate from "../components/templates/UserInfoTemplate";
+import styled from "styled-components";
 
 const Main = () => {
   return (
-    <div>
-      <Poster />
-      <InformationInput />
-    </div>
+    <StyledRoot>
+      <UserInfoTemplate />
+    </StyledRoot>
   );
 };
 
 export default Main;
+
+const StyledRoot = styled.div`
+  display: flex;
+  justify-content: center;
+`;
