@@ -16,7 +16,9 @@ const Footer = ({ isJoinButtonDisabled }: IProps) => {
   return (
     <FooterWrapper>
       {isJoinButtonDisabled ? <CButton onClick={openModalFunc}>다음</CButton> : <Button>다음</Button>}
-      <img src={HomeBarIcon} alt=""></img>
+      <ImageWrapper>
+        <img src={HomeBarIcon} alt="" />
+      </ImageWrapper>
       {isOpen && isJoinButtonDisabled && <Modal isOpen={isOpen} setIsOpen={setIsOpen} isBlur={true} />}
     </FooterWrapper>
   );
@@ -29,9 +31,13 @@ const FooterWrapper = styled.div`
   bottom: 0;
   background-color: white;
   text-align: -webkit-center;
+`;
+
+const ImageWrapper = styled.div`
+  position: relative;
   & > img {
     position: sticky;
-    margin: 20px 0 5px 0;
+    margin: 20px 0 10px 0;
     z-index: 1000;
   }
 `;
