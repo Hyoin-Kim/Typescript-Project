@@ -160,8 +160,7 @@ const Modal = ({ ...props }: IProps): React.ReactElement => {
 export default Modal;
 
 export const SModal = styled.div`
-  position: absolute;
-  z-index: 100;
+  z-index: 10;
 `;
 
 export const Background = styled.div<{ isBlur?: boolean }>`
@@ -175,20 +174,14 @@ export const Background = styled.div<{ isBlur?: boolean }>`
 `;
 
 const ModalWrapper = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
+  position: absolute;
   bottom: 0;
-  left: 0;
-  margin: auto;
   border-radius: 10px;
   border: none;
   background-color: white;
-  width: 375px;
-  height: 362px;
-  z-index: 9999;
-  overflow: visible;
-  box-sizing: border-box;
+  width: 23.438rem;
+  height: 22.625rem;
+  z-index: 10;
 `;
 
 const AcceptWrapper = styled.div`
