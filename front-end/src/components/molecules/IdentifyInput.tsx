@@ -81,7 +81,7 @@ const IdentifyInput = ({ birthInputRef, uniqueInputRef, onKeyPress, isConditionM
     <IdentifyWrapper>
       <p>주민등록번호</p>
       <StyledInput
-        width="124px"
+        width="144px"
         errorMsg="올바른 주민등록번호를 입력하세요."
         onChange={handleBirthOnChange}
         isConditionMet={isConditionMet.birthNum}
@@ -91,7 +91,7 @@ const IdentifyInput = ({ birthInputRef, uniqueInputRef, onKeyPress, isConditionM
       />{" "}
       -{" "}
       <StyledInput
-        width="124px"
+        width="144px"
         errorMsg="올바른 주민등록번호를 입력하세요."
         onChange={handleUniqueOnChange}
         isPw={true}
