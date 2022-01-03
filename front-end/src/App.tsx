@@ -20,6 +20,9 @@ function App() {
 export default App;
 
 const StyledRoot = styled.div`
-  width: 23.438rem;
-  max-height: 40rem;
+  min-width: 23.438rem;
+  max-width: 40rem;
+  height: 40rem;
+  position: relative;
+  margin: auto;
 `;
