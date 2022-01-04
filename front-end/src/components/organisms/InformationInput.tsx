@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useRef, useEffect } from "react";
 import NameInput from "../molecules/NameInput";
 import PhoneInput from "../molecules/PhoneInput";
@@ -10,6 +9,7 @@ const InformationInput = () => {
   const phoneInputRef = useRef<HTMLInputElement>(null);
   const birthInputRef = useRef<HTMLInputElement>(null);
   const uniqueInputRef = useRef<HTMLInputElement>(null);
+  const [birthNum, setBirthNum] = useState("");
   const [isJoinButtonDisabled, setIsJoinButtonDisabled] = useState(false);
   const [isConditionMet, setIsConditionMet] = useState({
     name: false,
@@ -36,6 +36,8 @@ const InformationInput = () => {
 
   function handleUniquePress(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key == "Enter") {
+      uniqueInputRef.current?.focus();
+    } else if (birthNum.length === 6) {
       uniqueInputRef.current?.focus();
     }
   }
@@ -68,6 +70,8 @@ const InformationInput = () => {
         onKeyPress={handleUniquePress}
         isConditionMet={isConditionMet}
         setIsConditionMet={setIsConditionMet}
+        birthNum={birthNum}
+        setBirthNum={setBirthNum}
       />
       <Footer isJoinButtonDisabled={isJoinButtonDisabled} />
     </div>
