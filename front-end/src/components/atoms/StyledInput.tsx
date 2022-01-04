@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 interface IProps {
@@ -20,7 +19,6 @@ const StyledInput = ({
   width,
   isPw,
   errorMsg,
-  spaceMsg,
   tip,
   message,
   maxByte,
