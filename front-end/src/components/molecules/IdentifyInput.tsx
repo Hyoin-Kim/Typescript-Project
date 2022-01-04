@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import StyledInput from "../atoms/StyledInput";
 import { IJoinInfo } from "../../types/info.type";
@@ -8,25 +7,34 @@ interface IProps {
   birthInputRef?: React.RefObject<HTMLInputElement>;
   uniqueInputRef?: React.RefObject<HTMLInputElement>;
   onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  birthNum: string;
+  setBirthNum: (value: string) => void;
   isConditionMet: IJoinInfo;
   setIsConditionMet: (value: IJoinInfo) => void;
 }
 
-const IdentifyInput = ({ birthInputRef, uniqueInputRef, onKeyPress, isConditionMet, setIsConditionMet }: IProps) => {
-  const maxByteRef = useRef<HTMLInputElement>(null);
-  const [birthNum, setBirthNum] = useState("");
+const IdentifyInput = ({
+  birthInputRef,
+  uniqueInputRef,
+  onKeyPress,
+  birthNum,
+  setBirthNum,
+  isConditionMet,
+  setIsConditionMet,
+}: IProps) => {
+  const [isBirthFocusOn, setIsBirthFocusOn] = useState(false);
+  const [isUniqueFocusOn, setIsUniqueFocusOn] = useState(false);
   const [uniqueNum, setUniqueNum] = useState("");
   const handleBirthOnChange = (value: string) => {
     setBirthNum(value);
+    setIsBirthFocusOn(true);
+    console.log(birthNum);
   };
 
   const handleUniqueOnChange = (value: string) => {
     setUniqueNum(value);
+    setIsUniqueFocusOn(false);
   };
-
-  if (birthNum.length === 6) {
-    maxByteRef.current?.focus();
-  }
 
   useEffect(() => {
     const nameCheck = /^[0-9]+$/;
@@ -50,7 +58,6 @@ const IdentifyInput = ({ birthInputRef, uniqueInputRef, onKeyPress, isConditionM
           return parseInt(item);
         });
         const combineArr = birthArr.concat(uniqueArr);
-        console.log(combineArr);
         for (let i = 0; i < combineArr.length - 1; i++) {
           combineArr[i] = combineArr[i] * checkArr[i];
         }
@@ -80,25 +87,32 @@ const IdentifyInput = ({ birthInputRef, uniqueInputRef, onKeyPress, isConditionM
   return (
     <IdentifyWrapper>
       <p>주민등록번호</p>
-      <StyledInput
-        width="144px"
-        errorMsg="올바른 주민등록번호를 입력하세요."
-        onChange={handleBirthOnChange}
-        isConditionMet={isConditionMet.birthNum}
-        maxByte={6}
-        onKeyPress={onKeyPress}
-        inputRef={birthInputRef}
-      />{" "}
-      -{" "}
-      <StyledInput
-        width="144px"
-        errorMsg="올바른 주민등록번호를 입력하세요."
-        onChange={handleUniqueOnChange}
-        isPw={true}
-        isConditionMet={isConditionMet.uniqueNum}
-        maxByte={7}
-        inputRef={uniqueInputRef || maxByteRef}
-      />
+      <InputWrapper>
+        <StyledInput
+          width="145px"
+          onChange={handleBirthOnChange}
+          isConditionMet={isConditionMet.birthNum}
+          maxByte={6}
+          onKeyPress={onKeyPress}
+          inputRef={birthInputRef}
+        />{" "}
+        -{" "}
+        <StyledInput
+          width="145px"
+          onChange={handleUniqueOnChange}
+          isPw={true}
+          isConditionMet={isConditionMet.uniqueNum}
+          maxByte={7}
+          inputRef={uniqueInputRef}
+        />
+      </InputWrapper>
+      {(isBirthFocusOn || isUniqueFocusOn) &&
+      (!isConditionMet.birthNum || !isConditionMet.uniqueNum) &&
+      (uniqueNum !== "" || birthNum !== "") ? (
+        <div>
+          <ErrorMsg>올바른 주민등록번호를 입력하세요.</ErrorMsg>
+        </div>
+      ) : null}
     </IdentifyWrapper>
   );
 };
@@ -107,9 +121,14 @@ export default IdentifyInput;
 
 const IdentifyWrapper = styled.div`
   margin: 0px 24px 32px 24px;
-  & > div {
-    display: inline-block;
-    margin-right: 5px;
-    margin-left: 5px;
-  }
+`;
+
+const InputWrapper = styled.div`
+  display: inline-flex;
+`;
+
+const ErrorMsg = styled.div`
+  color: #e85440;
+  font-size: 14px;
+  line-height: 140%;
 `;
