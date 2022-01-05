@@ -2,40 +2,37 @@ import React, { useState, useRef, useEffect } from "react";
 import NameInput from "../molecules/NameInput";
 import PhoneInput from "../molecules/PhoneInput";
 import IdentifyInput from "../molecules/IdentifyInput";
+import { IJoinInfo } from "../../types/info.type";
 
 interface IProps {
-  setIsJoinButtonDisabled: (value: boolean) => void;
+  isConditionMet: IJoinInfo;
+  setIsConditionMet: (value: IJoinInfo) => void;
 }
 
-const InformationInput = ({ setIsJoinButtonDisabled }: IProps) => {
+const InformationInput = ({ isConditionMet, setIsConditionMet }: IProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const phoneInputRef = useRef<HTMLInputElement>(null);
   const birthInputRef = useRef<HTMLInputElement>(null);
   const uniqueInputRef = useRef<HTMLInputElement>(null);
   const [birthNum, setBirthNum] = useState("");
-  const [isConditionMet, setIsConditionMet] = useState({
-    name: false,
-    phoneNum: false,
-    birthNum: false,
-    uniqueNum: false,
-  });
 
   useEffect(() => {
     if (inputRef.current !== null) inputRef.current.focus();
   }, []);
 
+  //nameInput에서 Enter시, 휴대폰 번호 필드에 포커싱
   function handleNamePress(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key == "Enter") {
       phoneInputRef.current?.focus();
     }
   }
-
+  //phoneInput에서 Enter시, 주민등록번호 생년월일 필드에 포커싱
   function handlePhonePress(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key == "Enter") {
       birthInputRef.current?.focus();
     }
   }
-
+  //주민등록 생년월일에 Enter 또는 6자리 성립시, 주민등록번호 뒷자리 필드에 포커싱
   function handleUniquePress(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key == "Enter") {
       uniqueInputRef.current?.focus();
@@ -43,14 +40,6 @@ const InformationInput = ({ setIsJoinButtonDisabled }: IProps) => {
       uniqueInputRef.current?.focus();
     }
   }
-
-  useEffect(() => {
-    if (isConditionMet.name && isConditionMet.phoneNum && isConditionMet.uniqueNum && isConditionMet.birthNum) {
-      setIsJoinButtonDisabled(true);
-    } else {
-      setIsJoinButtonDisabled(false);
-    }
-  }, [isConditionMet]);
 
   return (
     <>

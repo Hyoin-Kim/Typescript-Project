@@ -1,18 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import NoticeModal from "../molecules/NoticeModal";
 import { HomeBarIcon } from "../../assets";
+import { IJoinInfo } from "../../types/info.type";
 
 interface IProps {
+  isConditionMet: IJoinInfo;
   isJoinButtonDisabled: boolean;
+  setIsJoinButtonDisabled: (value: boolean) => void;
 }
 
-const Footer = ({ isJoinButtonDisabled }: IProps) => {
+const Footer = ({ isConditionMet, isJoinButtonDisabled, setIsJoinButtonDisabled }: IProps) => {
   const [isNoticeModalOpen, setIsNoticeModalOpen] = useState(false);
 
   function openModalFunc() {
     setIsNoticeModalOpen(!isNoticeModalOpen);
   }
+
+  //이름,휴대폰,주민등록번호 조건 모두 성립시 Button활성화
+  useEffect(() => {
+    if (isConditionMet.name && isConditionMet.phoneNum && isConditionMet.uniqueNum && isConditionMet.birthNum) {
+      setIsJoinButtonDisabled(true);
+    } else {
+      setIsJoinButtonDisabled(false);
+    }
+  }, [isConditionMet]);
+
   return (
     <FooterWrapper>
       <ButtonWrapper>
