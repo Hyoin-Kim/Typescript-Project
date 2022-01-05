@@ -28,7 +28,6 @@ const IdentifyInput = ({
   const handleBirthOnChange = (value: string) => {
     setBirthNum(value);
     setIsBirthFocusOn(true);
-    console.log(birthNum);
   };
 
   const handleUniqueOnChange = (value: string) => {

@@ -1,6 +1,5 @@
-import React from "react";
-import UserInfoTemplate from "../components/templates/UserInfoTemplate";
 import styled from "styled-components";
+import UserInfoTemplate from "../components/templates/UserInfoTemplate";
 
 const Main = () => {
   return (
