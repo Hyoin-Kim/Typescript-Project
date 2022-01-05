@@ -1,13 +1,16 @@
 # 회원정보 JoinPage
-타입스크립트를 활용하여 회원 정보를 받아 일부 기능을 구현해보는 프로젝트입니다. <br/> 
 
-📃프로젝트 개발 기간 : 2021.12.29 ~ 2021.1.4
+타입스크립트를 활용하여 회원 정보를 받아 일부 기능을 구현해보는 프로젝트입니다. <br/>
 
+📃프로젝트 개발 기간 : 2021.12.29 ~ 2021.1.5
 
 ## 📌 Convention
+
 - Code Convention
+
   - eslint, prettier 사용
-  - 변수, 함수 : camel Case 사용
+  - 변수, 함수 : Camel Case 사용
+  - 컴포넌트를 정의한 파일 : Pascal case 사용
   - styled-components : 코드 하단에 작성하기
   - 아토믹 디자인 패턴 적용(Atoms->Molecules->Organisms->Template->Page)
 
@@ -24,8 +27,9 @@
   #   test     : 테스트 (테스트 코드 추가, 수정, 삭제: 비즈니스 로직에 변경 없음)
   #   chore    : 기타 변경사항 (빌드 스크립트 수정, 에셋 추가 등)
   ```
-  
+
 ## 🛠 기술 스택
+
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/TypeScript-blue?style=flat-square&logo=TypeScript&logoColor=white"/> <img src="https://img.shields.io/badge/StyledComponents-DB7093?style=flat-square&logo=Styled-components&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white"/> <img src="https://img.shields.io/badge/Eslint-4B3263?style=flat-square&logo=Eslint&logoColor=white"/>
 
 ```
@@ -45,7 +49,7 @@
 "web-vitals": "^2.1.2"
 ```
 
-## 💻 실행
+## 💻 실행방법
 
 ```
 $ npm install
@@ -53,6 +57,7 @@ $ npm start
 ```
 
 ## ❤ 개발자 소개
-|김효인|
-|---|
-|[@Hyoin-Kim](https://github.com/Hyoin-Kim)|
+
+| 김효인                                     |
+| ------------------------------------------ |
+| [@Hyoin-Kim](https://github.com/Hyoin-Kim) |
