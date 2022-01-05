@@ -2,15 +2,17 @@ import React, { useState, useRef, useEffect } from "react";
 import NameInput from "../molecules/NameInput";
 import PhoneInput from "../molecules/PhoneInput";
 import IdentifyInput from "../molecules/IdentifyInput";
-import Footer from "../common/Footer";
 
-const InformationInput = () => {
+interface IProps {
+  setIsJoinButtonDisabled: (value: boolean) => void;
+}
+
+const InformationInput = ({ setIsJoinButtonDisabled }: IProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const phoneInputRef = useRef<HTMLInputElement>(null);
   const birthInputRef = useRef<HTMLInputElement>(null);
   const uniqueInputRef = useRef<HTMLInputElement>(null);
   const [birthNum, setBirthNum] = useState("");
-  const [isJoinButtonDisabled, setIsJoinButtonDisabled] = useState(false);
   const [isConditionMet, setIsConditionMet] = useState({
     name: false,
     phoneNum: false,
@@ -51,7 +53,7 @@ const InformationInput = () => {
   }, [isConditionMet]);
 
   return (
-    <div>
+    <>
       <NameInput
         inputRef={inputRef}
         onKeyPress={handleNamePress}
@@ -73,8 +75,7 @@ const InformationInput = () => {
         birthNum={birthNum}
         setBirthNum={setBirthNum}
       />
-      <Footer isJoinButtonDisabled={isJoinButtonDisabled} />
-    </div>
+    </>
   );
 };
 
