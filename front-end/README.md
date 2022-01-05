@@ -50,6 +50,46 @@
 "web-vitals": "^2.1.2"
 ```
 
+## 🗂 폴더 구조
+```
+📦src
+ ┣ 📂assets
+ ┃ ┣ 📜allCheck.svg
+ ┃ ┣ 📜allCheck_color.svg
+ ┃ ┣ 📜batteryIcon.svg
+ ┃ ┣ 📜check.svg
+ ┃ ┣ 📜check_color.svg
+ ┃ ┣ 📜homeBar.svg
+ ┃ ┣ 📜index.ts
+ ┃ ┗ 📜security.svg
+ ┣ 📂components
+ ┃ ┣ 📂atoms
+ ┃ ┃ ┣ 📜Modal.tsx
+ ┃ ┃ ┗ 📜StyledInput.tsx
+ ┃ ┣ 📂common
+ ┃ ┃ ┣ 📜Footer.tsx
+ ┃ ┃ ┗ 📜Header.tsx
+ ┃ ┣ 📂molecules
+ ┃ ┃ ┣ 📜IdentifyInput.tsx
+ ┃ ┃ ┣ 📜NameInput.tsx
+ ┃ ┃ ┣ 📜NoticeModal.tsx
+ ┃ ┃ ┣ 📜PhoneInput.tsx
+ ┃ ┃ ┗ 📜Poster.tsx
+ ┃ ┣ 📂organisms
+ ┃ ┃ ┗ 📜InformationInput.tsx
+ ┃ ┣ 📂templates
+ ┃ ┃ ┗ 📜UserInfoTemplate.tsx
+ ┃ ┗ 📜custom.d.ts
+ ┣ 📂pages
+ ┃ ┗ 📜Main.tsx
+ ┣ 📂styles
+ ┃ ┗ 📜GlobalStyle.ts
+ ┣ 📂types
+ ┃ ┗ 📜info.type.ts
+ ┣ 📜App.tsx
+ ┗ 📜index.tsx
+```
+
 ## 💻 실행방법
 
 ```
