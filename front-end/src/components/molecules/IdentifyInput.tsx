@@ -35,6 +35,7 @@ const IdentifyInput = ({
     setIsUniqueFocusOn(false);
   };
 
+  //생년월일 숫자 입력 조건
   useEffect(() => {
     const nameCheck = /^[0-9]+$/;
     if (nameCheck.test(birthNum)) {
@@ -44,6 +45,7 @@ const IdentifyInput = ({
     }
   }, [birthNum]);
 
+  //주민번호 뒷자리 숫자 입력 조건 및 주민등록번호 규칙 적용
   useEffect(() => {
     const nameCheck = /^[0-9]+$/;
     if (nameCheck.test(uniqueNum)) {

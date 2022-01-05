@@ -17,6 +17,7 @@ const NoticeModal = ({ isNoticeModalOpen, setIsNoticeModalOpen }: IProps): React
     check4: false,
   });
 
+  //모든 약간 동의 check
   function handleCheckAll(): void {
     if (!checkAll) {
       setCheckAll(true);
@@ -38,6 +39,7 @@ const NoticeModal = ({ isNoticeModalOpen, setIsNoticeModalOpen }: IProps): React
     }
   }
 
+  //개별 약간 동의 check
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
       case "policy1":

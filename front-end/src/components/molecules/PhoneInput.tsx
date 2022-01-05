@@ -17,14 +17,15 @@ const PhoneInput = ({ phoneInputRef, onKeyPress, isConditionMet, setIsConditionM
     setPhoneNum(value);
   };
 
+  //휴대폰 번호 입력 조건
   useEffect(() => {
     if (phoneNum.length === 10) {
-      setPhoneNum(phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
+      setPhoneNum(phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")); //phoneNum이 10자리일경우(xxx/xxx/xxxx) '-' 생성(10자리->12자리)
     } else if (phoneNum.length === 13) {
-      setPhoneNum(phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"));
+      setPhoneNum(phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")); //phoneNum이 13자리일경우(xxx-xxxx-xxxx) '-' 생성
     }
-    const oldPhoneNum = /^01([1|9|])-?([0-9]{3,4})-?([0-9]{4})$/;
-    const recentPhoneNum = /^01([0])-?([0-9]{4})-?([0-9]{4})$/;
+    const oldPhoneNum = /^01([1|9|])-?([0-9]{3,4})-?([0-9]{4})$/; //011 또는 019 형식
+    const recentPhoneNum = /^01([0])-?([0-9]{4})-?([0-9]{4})$/; //010 형식
     if (oldPhoneNum.test(phoneNum) === true || recentPhoneNum.test(phoneNum)) {
       setIsConditionMet({ ...isConditionMet, phoneNum: true });
     } else {
