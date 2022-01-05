@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import Modal from "../molecules/Modal";
+import NoticeModal from "../molecules/NoticeModal";
 import { HomeBarIcon } from "../../assets";
 
 interface IProps {
@@ -8,18 +8,20 @@ interface IProps {
 }
 
 const Footer = ({ isJoinButtonDisabled }: IProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isNoticeModalOpen, setIsNoticeModalOpen] = useState(false);
 
   function openModalFunc() {
-    setIsOpen(!isOpen);
+    setIsNoticeModalOpen(!isNoticeModalOpen);
   }
   return (
     <FooterWrapper>
-      {isJoinButtonDisabled ? <CButton onClick={openModalFunc}>다음</CButton> : <Button>다음</Button>}
+      <ButtonWrapper>
+        {isJoinButtonDisabled ? <CButton onClick={openModalFunc}>다음</CButton> : <Button>다음</Button>}
+      </ButtonWrapper>
       <ImageWrapper>
         <img src={HomeBarIcon} alt="" />
       </ImageWrapper>
-      {isOpen && isJoinButtonDisabled && <Modal isOpen={isOpen} setIsOpen={setIsOpen} isBlur={true} />}
+      <NoticeModal isNoticeModalOpen={isNoticeModalOpen} setIsNoticeModalOpen={setIsNoticeModalOpen} />
     </FooterWrapper>
   );
 };
@@ -33,11 +35,18 @@ const FooterWrapper = styled.div`
   text-align: -webkit-center;
 `;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  height: 92px;
+  justify-content: center;
+  align-items: center;
+`;
+
 const ImageWrapper = styled.div`
   position: relative;
   & > img {
     position: sticky;
-    margin: 20px 0 10px 0;
+    margin: 20px 0 26px 0;
     z-index: 1000;
   }
 `;

@@ -1,9 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 import { BatteryIcon } from "../../assets";
 
 const Header = () => {
-  const now = new Date();
+  const now = new Date(); //현재 시간 표현
   const currHour = now.getHours();
   const currMinutes = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
 

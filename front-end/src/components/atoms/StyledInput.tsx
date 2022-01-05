@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 interface IProps {
   width: string;
-  isPw?: boolean;
+  isPw?: boolean; //optional value
   errorMsg?: string;
   spaceMsg?: string;
   tip?: string;
@@ -50,7 +50,6 @@ const StyledInput = ({
           onFocus={handleOnFocus}
           onKeyPress={onKeyPress}
           type={isPw ? "password" : "text"}
-          autoComplete={isPw ? "false" : "true"}
           maxLength={maxByte}
           ref={inputRef}
           value={value}
@@ -62,7 +61,6 @@ const StyledInput = ({
           <Tip>{tip}</Tip> <p>{message}</p>
         </TipWrapper>
       ) : null}
-      {/* {isInput == "" ? <ErrorMsg>{spaceMsg}</ErrorMsg> : null} */}
     </StyledInputWrpper>
   );
 };
@@ -113,6 +111,7 @@ const ErrorMsg = styled.div`
   color: #e85440;
   font-size: 14px;
   line-height: 140%;
+  margin-top: 8px;
 `;
 
 const Tip = styled.div`
@@ -122,8 +121,12 @@ const Tip = styled.div`
   line-height: 140%;
   color: #4394f0;
   margin-right: 5px;
+  margin-top: 8px;
 `;
 
 const TipWrapper = styled.div`
   display: flex;
+  & > p {
+    margin-top: 8px;
+  }
 `;
