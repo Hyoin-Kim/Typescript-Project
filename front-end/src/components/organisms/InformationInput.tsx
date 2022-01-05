@@ -34,9 +34,7 @@ const InformationInput = ({ isConditionMet, setIsConditionMet }: IProps) => {
   }
   //주민등록 생년월일에 Enter 또는 6자리 성립시, 주민등록번호 뒷자리 필드에 포커싱
   function handleUniquePress(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key == "Enter") {
-      uniqueInputRef.current?.focus();
-    } else if (birthNum.length === 6) {
+    if (e.key == "Enter" || birthNum.length === 6) {
       uniqueInputRef.current?.focus();
     }
   }
