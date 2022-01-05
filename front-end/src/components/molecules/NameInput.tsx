@@ -16,9 +16,11 @@ const NameInput = ({ inputRef, onKeyPress, isConditionMet, setIsConditionMet }: 
     setName(value);
   };
 
+  //이름 입력 조건
   useEffect(() => {
-    const nameCheck = /^[가-힣|a-z|A-Z|0-9|\s]+$/;
-    const nameSpace = /^[^\s|\s$]+$/;
+    const nameCheck = /^[가-힣|a-z|A-Z|\s]+$/;
+    const nameSpace = /^[^\s|\s$]/;
+    //문자열이 정규표현식과 매칭되는지 여부
     if (nameCheck.test(name) && nameSpace.test(name)) {
       setIsConditionMet({ ...isConditionMet, name: true });
     } else {
@@ -32,7 +34,6 @@ const NameInput = ({ inputRef, onKeyPress, isConditionMet, setIsConditionMet }: 
       <StyledInput
         width="300px"
         errorMsg="한글과 영문만 가능합니다."
-        spaceMsg="올바른 이름을 입력해주세요."
         message="닉네임이 아닌 실명인지 확인해주세요."
         tip="TIP"
         onChange={handleNameOnChange}
