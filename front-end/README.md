@@ -6,7 +6,6 @@
   - 변수, 함수 : Camel Case 사용
   - 컴포넌트를 정의한 파일 : Pascal case 사용
   - styled-components : 코드 하단에 작성하기
-  - 아토믹 디자인 패턴 적용(Atoms->Molecules->Organisms->Template->Page)
 
 - Commit Message Convention
 
